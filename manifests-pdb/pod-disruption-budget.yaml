@@ -1,0 +1,13 @@
+# PodDisruptionBudget（PDB）は、Kubernetes が自動的または手動で Pod を退避（Eviction）させるときに、サービスの可用性を守る仕組みです。
+# kubectl drain を使うと、PDB を尊重して Eviction をブロックしてくれます
+#Pod を kubectl delete した場合は PDB は無視されます（Eviction API 経由でないため）
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: pdb
+spec:
+  minAvailable: 50%
+  #maxUnavailable: 1
+  selector:
+    matchLabels:
+      app: example-app
