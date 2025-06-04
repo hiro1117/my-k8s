@@ -1,0 +1,23 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: example-job
+spec:
+  completions: 2
+  activeDeadlineSeconds: 30
+  backoffLimit: 4
+  template:
+    metadata:
+      labels:
+        app: example-job
+    spec:
+      containers:
+        - name: job-container
+          image: busybox
+          command: ["sh"]
+          args: ["-c", "echo 'Hello, World!'"]
+        # - name: fail-container
+        #   image: busybox
+        #   command: ["sh"]
+        #   args: ["-c", "exit 137"]
+      restartPolicy: Never
