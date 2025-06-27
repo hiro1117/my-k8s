@@ -1,0 +1,9 @@
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: dev-address-pool # ここは自由な名前を設定してOK
+  namespace: metallb-system
+spec:
+  addresses:
+    - 172.19.0.7/32 # ここにIPアドレスを指定する
+
